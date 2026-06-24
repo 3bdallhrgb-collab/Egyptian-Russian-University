@@ -23,21 +23,12 @@ export default function LoginPage() {
       <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-md shadow-card border border-slate-200 p-6 sm:p-8">
-            <div className="flex flex-col items-center mb-8">
+            <div className="flex flex-col items-center mb-6">
               <img
                 src="/eru-logo.png"
                 alt="Egyptian Russian University"
-                className="h-20 w-auto object-contain mb-4"
+                className="h-20 w-auto object-contain"
               />
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-800 text-center">
-                Egyptian Russian University
-              </h1>
-              <p className="text-sm text-slate-500 text-center mt-1">
-                الجامعة المصرية الروسية
-              </p>
-              <p className="text-sm text-slate-600 text-center mt-3 font-medium">
-                Student Self-Service Portal
-              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
