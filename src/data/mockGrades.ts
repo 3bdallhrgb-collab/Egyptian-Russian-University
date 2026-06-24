@@ -108,8 +108,8 @@ export const transcriptTerms: TermRecord[] = [
     termGpa: 1.67,
     termCredits: 18,
     termAttempted: 18,
-    termEarned: 0,
-    termQualityPoints: 16,
+    termEarned: 18,
+    termQualityPoints: 30.06,
     awards: [],
   },
 ]
