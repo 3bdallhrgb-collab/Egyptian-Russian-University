@@ -1,5 +1,4 @@
 import { AppShell } from '@/components/layout/AppShell'
-import { Card } from '@/components/ui/Card'
 import { SelectBox } from '@/components/ui/SelectBox'
 import { PrintLink } from '@/components/ui/PrintLink'
 import { gradeReportRows, type GradeRow } from '@/data/mockGrades'
@@ -11,23 +10,23 @@ const sequenceOptions = ['001', '002', '003']
 
 function GradeRowView({ row, index }: { row: GradeRow; index: number }) {
   return (
-    <tr className={`border-b border-slate-200 text-xs sm:text-sm transition-colors hover:bg-slate-50 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
-      <td className="py-3 px-3 sm:px-4 align-top">
-        <div className="font-bold text-slate-900 leading-tight text-[11px] sm:text-sm">{row.course}</div>
-        <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">{row.title}</div>
+    <tr className={`border-b border-slate-100 text-xs sm:text-sm ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
+      <td className="py-2.5 px-3 sm:px-4 align-top">
+        <div className="font-semibold text-slate-900 text-[11px] sm:text-sm">{row.course}</div>
+        <div className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">{row.title}</div>
       </td>
-      <td className="py-3 px-3 sm:px-4 text-slate-700 align-top whitespace-nowrap">
-        <span className={`inline-flex items-center px-2 py-0.5 text-[10px] sm:text-xs font-medium rounded-full ${row.status === 'Active' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
+      <td className="py-2.5 px-3 sm:px-4 text-slate-700 align-top whitespace-nowrap">
+        <span className={`text-[10px] sm:text-xs font-medium ${row.status === 'Active' ? 'text-emerald-700' : 'text-slate-500'}`}>
           {row.status === 'Active' ? 'Active / نشط' : 'Withdrawn / منسحب'}
         </span>
       </td>
-      <td className="py-3 px-3 sm:px-4 text-slate-700 font-semibold align-top text-center">{row.credits.toFixed(1)}</td>
-      <td className="py-3 px-3 sm:px-4 text-slate-700 align-top whitespace-nowrap">
-        <span className={`inline-flex items-center px-2 py-0.5 text-[10px] sm:text-xs font-medium rounded-full ${row.result === 'Pass' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
+      <td className="py-2.5 px-3 sm:px-4 text-slate-700 font-semibold align-top text-center">{row.credits.toFixed(1)}</td>
+      <td className="py-2.5 px-3 sm:px-4 text-slate-700 align-top whitespace-nowrap">
+        <span className={`text-[10px] sm:text-xs font-medium ${row.result === 'Pass' ? 'text-emerald-700' : 'text-red-600'}`}>
           {row.result === 'Pass' ? 'Pass / ناجح' : 'Fail / راسب'}
         </span>
       </td>
-      <td className="py-3 px-3 sm:px-4 text-slate-900 font-bold align-top text-center text-sm sm:text-base">{row.finalGrade}</td>
+      <td className="py-2.5 px-3 sm:px-4 text-slate-900 font-bold align-top text-center">{row.finalGrade}</td>
     </tr>
   )
 }
@@ -43,12 +42,13 @@ export default function GradeReportPage() {
 
   return (
     <AppShell>
-      <div className="space-y-5 print:space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200 print:border-b-2 print:border-black">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="flex items-start sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-200">
           <div>
-            <h1 className="text-lg sm:text-xl font-bold text-black">Grade Report / تقرير الدرجات</h1>
-            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              {mockStudent.facultyAr} — Academic Year {mockStudent.academicYear} (Spring / ربيع)
+            <h1 className="text-base sm:text-lg font-bold text-slate-900">Grade Report / تقرير الدرجات</h1>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+              {mockStudent.facultyAr} — {mockStudent.academicYear} (Spring)
             </p>
           </div>
           <div className="flex items-center gap-2 print:hidden">
@@ -56,84 +56,77 @@ export default function GradeReportPage() {
           </div>
         </div>
 
-        <Card>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs sm:text-sm leading-relaxed">
-              <div>
-                <span className="text-slate-500">Student Name / اسم الطالب:</span>{' '}
-                <span className="font-semibold text-black">{mockStudent.fullName}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">Student ID / الرقم الجامعي:</span>{' '}
-                <span className="font-semibold text-black">{mockStudent.studentId}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">Faculty / الكلية:</span>{' '}
-                <span className="font-semibold text-black">{mockStudent.facultyAr}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">Level / المستوى:</span>{' '}
-                <span className="font-semibold text-black">{mockStudent.year}</span>
-              </div>
+        {/* Student Info Bar */}
+        <div className="bg-slate-50 border border-slate-200 rounded-md p-3 sm:p-4 mb-4 text-[11px] sm:text-sm">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-1 gap-x-6">
+            <div><span className="text-slate-500">Name:</span> <span className="font-semibold text-slate-900">{mockStudent.fullName}</span></div>
+            <div><span className="text-slate-500">ID:</span> <span className="font-semibold text-slate-900">{mockStudent.studentId}</span></div>
+            <div><span className="text-slate-500">Faculty:</span> <span className="font-semibold text-slate-900">{mockStudent.facultyAr}</span></div>
+            <div><span className="text-slate-500">Level:</span> <span className="font-semibold text-slate-900">{mockStudent.year}</span></div>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 mt-2 pt-2 border-t border-slate-200 print:hidden">
+            <div className="flex items-center gap-1.5">
+              <span className="text-slate-500">Period:</span>
+              <SelectBox value={period} options={periodOptions} onChange={setPeriod} />
             </div>
-            <div className="flex flex-wrap items-center gap-3 print:hidden">
-              <div className="flex items-center gap-2">
-                <span className="text-xs sm:text-sm font-medium text-slate-600">Period / الفصل</span>
-                <SelectBox value={period} options={periodOptions} onChange={setPeriod} />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs sm:text-sm font-medium text-slate-600">Sequence</span>
-                <SelectBox value={sequence} options={sequenceOptions} onChange={setSequence} />
-              </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-slate-500">Seq:</span>
+              <SelectBox value={sequence} options={sequenceOptions} onChange={setSequence} />
             </div>
-          </div>
-        </Card>
-
-        <div className="grid grid-cols-3 gap-3 sm:gap-4">
-          <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-5 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wide leading-tight">Term GPA<br /><span className="normal-case">المعدل الفصلي</span></div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{termGpa.toFixed(2)}</div>
-          </div>
-          <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-5 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wide leading-tight">CGPA<br /><span className="normal-case">المعدل التراكمي</span></div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{overallGpa.toFixed(2)}</div>
-          </div>
-          <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-5 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wide leading-tight">Passed CH<br /><span className="normal-case">الساعات المجتازة</span></div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{passed.toFixed(1)}</div>
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-lg border border-slate-200 shadow-sm bg-white">
+        {/* Compact Stats */}
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 text-xs sm:text-sm">
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded px-3 py-1.5">
+            <span className="text-slate-500">Term GPA / المعدل الفصلي:</span>
+            <span className="font-bold text-slate-900">{termGpa.toFixed(2)}</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded px-3 py-1.5">
+            <span className="text-slate-500">CGPA / التراكمي:</span>
+            <span className="font-bold text-slate-900">{overallGpa.toFixed(2)}</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded px-3 py-1.5">
+            <span className="text-slate-500">Passed CH / الساعات:</span>
+            <span className="font-bold text-slate-900">{passed.toFixed(1)}</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded px-3 py-1.5">
+            <span className="text-slate-500">Total CH / إجمالي الساعات:</span>
+            <span className="font-bold text-slate-900">{totalHours.toFixed(1)}</span>
+          </div>
+        </div>
+
+        {/* Grades Table */}
+        <div className="overflow-x-auto rounded-md border border-slate-200 bg-white">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
-              <tr className="bg-slate-50 text-slate-700 border-b border-slate-200">
-                <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Course<br /><span className="font-normal text-slate-400 normal-case">المقرر</span></th>
-                <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Status<br /><span className="font-normal text-slate-400 normal-case">الحالة</span></th>
-                <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide text-center">Credits<br /><span className="font-normal text-slate-400 normal-case">الساعات</span></th>
-                <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Result<br /><span className="font-normal text-slate-400 normal-case">النتيجة</span></th>
-                <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide text-center">Grade<br /><span className="font-normal text-slate-400 normal-case">التقدير</span></th>
+              <tr className="bg-slate-50 border-b border-slate-200 text-slate-600">
+                <th className="py-2.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs">Course / المقرر</th>
+                <th className="py-2.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs">Status / الحالة</th>
+                <th className="py-2.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs text-center">CH / الساعات</th>
+                <th className="py-2.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs">Result / النتيجة</th>
+                <th className="py-2.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs text-center">Grade / التقدير</th>
               </tr>
             </thead>
             <tbody>
               {gradeReportRows.map((row, i) => (
                 <GradeRowView key={row.course} row={row} index={i} />
               ))}
-              <tr className="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-200">
-                <td className="py-3 sm:py-3.5 px-3 sm:px-4 text-[11px] sm:text-sm" colSpan={2}>Total / الإجمالي</td>
-                <td className="py-3 sm:py-3.5 px-3 sm:px-4 text-center text-sm sm:text-base">{totalHours.toFixed(1)}</td>
-                <td className="py-3 sm:py-3.5 px-3 sm:px-4"></td>
-                <td className="py-3 sm:py-3.5 px-3 sm:px-4"></td>
+              <tr className="bg-slate-100 font-bold text-slate-900 border-t border-slate-300">
+                <td className="py-2.5 px-3 sm:px-4" colSpan={2}>Total / الإجمالي</td>
+                <td className="py-2.5 px-3 sm:px-4 text-center">{totalHours.toFixed(1)}</td>
+                <td className="py-2.5 px-3 sm:px-4"></td>
+                <td className="py-2.5 px-3 sm:px-4"></td>
               </tr>
             </tbody>
           </table>
         </div>
+
         {gradeReportRows.length === 0 && (
           <div className="py-8 text-center text-sm text-slate-500">
             No grades found for the selected period.
           </div>
         )}
-
       </div>
     </AppShell>
   )
