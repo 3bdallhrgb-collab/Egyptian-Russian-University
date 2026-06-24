@@ -14,7 +14,7 @@ export function SelectBox({ value, options, onChange, className }: SelectBoxProp
       <select
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
-        className="appearance-none bg-white border border-slate-300 rounded-lg px-3 py-1.5 pr-8 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-eru-500 focus:border-eru-500"
+        className="appearance-none bg-white border border-slate-300 rounded-md px-3 py-1.5 pr-8 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-eru-600 focus:border-eru-600"
       >
         {options.map((opt) => (
           <option key={opt} value={opt}>
