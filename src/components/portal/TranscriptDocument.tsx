@@ -14,22 +14,22 @@ export function TranscriptDocument() {
   const overallGpa = overallCredits > 0 ? overall.qualityPoints / overallCredits : 0
 
   return (
-    <div className="bg-white rounded-none shadow-none border border-black p-6 sm:p-8 md:p-10 max-w-4xl mx-auto print:shadow-none print:p-0 print:border-0">
-      <div className="text-center border-b-2 border-black pb-6 mb-6">
-        <img src="/eru-logo.png" alt="ERU" className="h-16 w-auto mx-auto mb-3 object-contain" />
-        <h2 className="text-xl font-bold text-black uppercase tracking-wide">Unofficial Transcript</h2>
-        <h3 className="text-lg font-semibold text-black mt-1">Egyptian Russian University</h3>
-        <p className="text-sm text-black mt-1">Office of the Registrar / مكتب الشؤون الأكاديمية</p>
-        <p className="text-sm text-black">{mockStudent.address}</p>
+    <div className="bg-white rounded-none shadow-none border border-black p-5 sm:p-8 md:p-10 max-w-4xl mx-auto print:shadow-none print:p-0 print:border-0">
+      <div className="text-center border-b-2 border-black pb-5 mb-5">
+        <img src="/eru-logo.png" alt="ERU" className="h-14 sm:h-16 w-auto mx-auto mb-3 object-contain" />
+        <h2 className="text-lg sm:text-xl font-bold text-black uppercase tracking-wide">Unofficial Transcript</h2>
+        <h3 className="text-base sm:text-lg font-semibold text-black mt-1">Egyptian Russian University / الجامعة المصرية الروسية</h3>
+        <p className="text-xs sm:text-sm text-black mt-1">Office of the Registrar / مكتب الشؤون الأكاديمية</p>
+        <p className="text-xs sm:text-sm text-black">{mockStudent.address}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-8 text-black">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm mb-6 sm:mb-8 text-black">
+        <div className="space-y-1">
           <p><span className="font-semibold">Student Name / اسم الطالب:</span> {mockStudent.fullName}</p>
           <p><span className="font-semibold">Student ID / الرقم الجامعي:</span> {mockStudent.studentId}</p>
           <p><span className="font-semibold">Program / البرنامج:</span> {mockStudent.program}</p>
         </div>
-        <div>
+        <div className="space-y-1">
           <p><span className="font-semibold">Degree / الدرجة:</span> {mockStudent.degree}</p>
           <p><span className="font-semibold">Faculty / الكلية:</span> {mockStudent.faculty}</p>
           <p><span className="font-semibold">Cumulative GPA / المعدل التراكمي:</span> {overallGpa.toFixed(2)}</p>
@@ -64,41 +64,41 @@ export function TranscriptDocument() {
             </table>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-            <div className="border border-black p-3">
-              <div className="text-xs text-black">Term Credits / ساعات الفصل</div>
-              <div className="font-semibold text-black">{term.termCredits.toFixed(2)}</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-xs sm:text-sm">
+            <div className="border border-black p-2 sm:p-3">
+              <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Term Credits<br />ساعات الفصل</div>
+              <div className="font-bold text-black mt-0.5">{term.termCredits.toFixed(2)}</div>
             </div>
-            <div className="border border-black p-3">
-              <div className="text-xs text-black">Term GPA / المعدل الفصلي</div>
-              <div className="font-semibold text-black">{term.termGpa.toFixed(2)}</div>
+            <div className="border border-black p-2 sm:p-3">
+              <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Term GPA<br />المعدل الفصلي</div>
+              <div className="font-bold text-black mt-0.5">{term.termGpa.toFixed(2)}</div>
             </div>
-            <div className="border border-black p-3">
-              <div className="text-xs text-black">Earned Credits / الساعات المكتسبة</div>
-              <div className="font-semibold text-black">{term.termEarned.toFixed(2)}</div>
+            <div className="border border-black p-2 sm:p-3">
+              <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Earned Credits<br />الساعات المكتسبة</div>
+              <div className="font-bold text-black mt-0.5">{term.termEarned.toFixed(2)}</div>
             </div>
-            <div className="border border-black p-3">
-              <div className="text-xs text-black">Quality Points / نقاط الجودة</div>
-              <div className="font-semibold text-black">{term.termQualityPoints.toFixed(2)}</div>
+            <div className="border border-black p-2 sm:p-3">
+              <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Quality Points<br />نقاط الجودة</div>
+              <div className="font-bold text-black mt-0.5">{term.termQualityPoints.toFixed(2)}</div>
             </div>
           </div>
         </div>
       ))}
 
-      <div className="mt-8 border-t-2 border-black pt-4">
-        <h4 className="text-base font-bold text-black mb-3">Overall Summary / المجموع العام</h4>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-          <div className="border border-black p-3">
-            <div className="text-xs text-black">Total Credits / إجمالي الساعات</div>
-            <div className="font-semibold text-black">{overallCredits.toFixed(2)}</div>
+      <div className="mt-6 sm:mt-8 border-t-2 border-black pt-4">
+        <h4 className="text-sm sm:text-base font-bold text-black mb-2 sm:mb-3">Overall Summary / المجموع العام</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm">
+          <div className="border border-black p-2 sm:p-3">
+            <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Total Credits<br />إجمالي الساعات</div>
+            <div className="font-bold text-black mt-0.5">{overallCredits.toFixed(2)}</div>
           </div>
-          <div className="border border-black p-3">
-            <div className="text-xs text-black">Total Quality Points / إجمالي النقاط</div>
-            <div className="font-semibold text-black">{overall.qualityPoints.toFixed(2)}</div>
+          <div className="border border-black p-2 sm:p-3">
+            <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Total Quality Points<br />إجمالي النقاط</div>
+            <div className="font-bold text-black mt-0.5">{overall.qualityPoints.toFixed(2)}</div>
           </div>
-          <div className="border border-black p-3">
-            <div className="text-xs text-black">Cumulative GPA / المعدل التراكمي</div>
-            <div className="font-semibold text-black">{overallGpa.toFixed(2)}</div>
+          <div className="border border-black p-2 sm:p-3">
+            <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">Cumulative GPA<br />المعدل التراكمي</div>
+            <div className="font-bold text-black mt-0.5">{overallGpa.toFixed(2)}</div>
           </div>
         </div>
       </div>

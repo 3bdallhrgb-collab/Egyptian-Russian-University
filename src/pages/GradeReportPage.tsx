@@ -12,18 +12,18 @@ const sequenceOptions = ['001', '002', '003']
 function GradeRowView({ row }: { row: GradeRow }) {
   return (
     <tr className="border-b border-black text-xs sm:text-sm">
-      <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black">
-        <div className="font-semibold text-black">{row.course}</div>
-        <div className="text-[10px] sm:text-xs text-slate-600">{row.title}</div>
+      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black align-top">
+        <div className="font-bold text-black leading-tight">{row.course}</div>
+        <div className="text-[10px] sm:text-[11px] text-slate-600 leading-tight mt-0.5">{row.title}</div>
       </td>
-      <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black text-black">
+      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black align-top whitespace-nowrap">
         {row.status === 'Active' ? 'Active / نشط' : 'Withdrawn / منسحب'}
       </td>
-      <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black text-black font-medium">{row.credits.toFixed(1)}</td>
-      <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black text-black">
+      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black font-semibold align-top text-center">{row.credits.toFixed(1)}</td>
+      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black align-top whitespace-nowrap">
         {row.result === 'Pass' ? 'Pass / ناجح' : 'Fail / راسب'}
       </td>
-      <td className="py-2 sm:py-3 px-2 sm:px-4 text-black font-semibold">{row.finalGrade}</td>
+      <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black font-bold align-top text-center">{row.finalGrade}</td>
     </tr>
   )
 }
@@ -39,22 +39,22 @@ export default function GradeReportPage() {
 
   return (
     <AppShell>
-      <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="space-y-5 print:space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200 print:border-b-2 print:border-black">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-black">Grade Report / تقرير الدرجات</h1>
-            <p className="text-sm text-slate-600 mt-1">
-              {mockStudent.facultyAr} — Academic Year {mockStudent.academicYear} (Spring)
+            <h1 className="text-lg sm:text-xl font-bold text-black">Grade Report / تقرير الدرجات</h1>
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+              {mockStudent.facultyAr} — Academic Year {mockStudent.academicYear} (Spring / ربيع)
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 print:hidden">
             <PrintLink />
           </div>
         </div>
 
         <Card>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm leading-relaxed">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs sm:text-sm leading-relaxed">
               <div>
                 <span className="text-slate-500">Student Name / اسم الطالب:</span>{' '}
                 <span className="font-semibold text-black">{mockStudent.fullName}</span>
@@ -72,54 +72,54 @@ export default function GradeReportPage() {
                 <span className="font-semibold text-black">{mockStudent.year}</span>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 print:hidden">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-slate-600">Period / الفصل</span>
+                <span className="text-xs sm:text-sm font-medium text-slate-600">Period / الفصل</span>
                 <SelectBox value={period} options={periodOptions} onChange={setPeriod} />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-slate-600">Sequence</span>
+                <span className="text-xs sm:text-sm font-medium text-slate-600">Sequence</span>
                 <SelectBox value={sequence} options={sequenceOptions} onChange={setSequence} />
               </div>
             </div>
           </div>
         </Card>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-          <div className="bg-white border border-black p-4 sm:p-5 text-center">
-            <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Term GPA / المعدل الفصلي</div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-black">{termGpa.toFixed(2)}</div>
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="bg-white border border-black p-3 sm:p-4 text-center">
+            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">Term GPA<br /><span className="normal-case">المعدل الفصلي</span></div>
+            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{termGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white border border-black p-4 sm:p-5 text-center">
-            <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">CGPA / المعدل التراكمي</div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-black">{overallGpa.toFixed(2)}</div>
+          <div className="bg-white border border-black p-3 sm:p-4 text-center">
+            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">CGPA<br /><span className="normal-case">المعدل التراكمي</span></div>
+            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{overallGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white border border-black p-4 sm:p-5 text-center">
-            <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Passed CH / الساعات المجتازة</div>
-            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-black">{passed.toFixed(1)}</div>
+          <div className="bg-white border border-black p-3 sm:p-4 text-center">
+            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">Passed CH<br /><span className="normal-case">الساعات المجتازة</span></div>
+            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{passed.toFixed(1)}</div>
           </div>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border border-black">
+          <table className="w-full text-left border border-black text-xs sm:text-sm">
             <thead>
-              <tr className="bg-slate-100 text-xs sm:text-sm text-black border-b border-black">
-                <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold border-r border-black">Course / المقرر</th>
-                <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold border-r border-black">Status / الحالة</th>
-                <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold border-r border-black">Credits / الساعات</th>
-                <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold border-r border-black">Result / النتيجة</th>
-                <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Grade / التقدير</th>
+              <tr className="bg-slate-100 text-black border-b border-black">
+                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Course<br /><span className="font-normal text-slate-600">المقرر</span></th>
+                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Status<br /><span className="font-normal text-slate-600">الحالة</span></th>
+                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black text-center">Credits<br /><span className="font-normal text-slate-600">الساعات</span></th>
+                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Result<br /><span className="font-normal text-slate-600">النتيجة</span></th>
+                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold text-center">Grade<br /><span className="font-normal text-slate-600">التقدير</span></th>
               </tr>
             </thead>
             <tbody>
               {gradeReportRows.map((row) => (
                 <GradeRowView key={row.course} row={row} />
               ))}
-              <tr className="bg-slate-100 font-semibold text-black text-xs sm:text-sm border-t-2 border-black">
-                <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black" colSpan={2}>Total / الإجمالي</td>
-                <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black">{totalHours.toFixed(1)}</td>
-                <td className="py-2 sm:py-3 px-2 sm:px-4 border-r border-black"></td>
-                <td className="py-2 sm:py-3 px-2 sm:px-4"></td>
+              <tr className="bg-slate-100 font-bold text-black border-t-2 border-black">
+                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black" colSpan={2}>Total / الإجمالي</td>
+                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-center">{totalHours.toFixed(1)}</td>
+                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black"></td>
+                <td className="py-2 sm:py-2.5 px-2 sm:px-3"></td>
               </tr>
             </tbody>
           </table>
