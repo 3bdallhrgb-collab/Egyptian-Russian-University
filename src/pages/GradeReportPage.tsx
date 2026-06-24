@@ -9,21 +9,25 @@ import { useState } from 'react'
 
 const sequenceOptions = ['001', '002', '003']
 
-function GradeRowView({ row }: { row: GradeRow }) {
+function GradeRowView({ row, index }: { row: GradeRow; index: number }) {
   return (
-    <tr className="border-b border-black text-xs sm:text-sm">
-      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black align-top">
-        <div className="font-bold text-black leading-tight">{row.course}</div>
-        <div className="text-[10px] sm:text-[11px] text-slate-600 leading-tight mt-0.5">{row.title}</div>
+    <tr className={`border-b border-black text-xs sm:text-sm ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+      <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black align-top">
+        <div className="font-bold text-black leading-tight text-[11px] sm:text-sm">{row.course}</div>
+        <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">{row.title}</div>
       </td>
-      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black align-top whitespace-nowrap">
-        {row.status === 'Active' ? 'Active / نشط' : 'Withdrawn / منسحب'}
+      <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black text-black align-top whitespace-nowrap">
+        <span className={`inline-block px-1.5 py-0.5 text-[10px] sm:text-xs font-medium border ${row.status === 'Active' ? 'border-black bg-white' : 'border-black bg-slate-100'}`}>
+          {row.status === 'Active' ? 'Active / نشط' : 'Withdrawn / منسحب'}
+        </span>
       </td>
-      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black font-semibold align-top text-center">{row.credits.toFixed(1)}</td>
-      <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-black align-top whitespace-nowrap">
-        {row.result === 'Pass' ? 'Pass / ناجح' : 'Fail / راسب'}
+      <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black text-black font-semibold align-top text-center">{row.credits.toFixed(1)}</td>
+      <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black text-black align-top whitespace-nowrap">
+        <span className={`inline-block px-1.5 py-0.5 text-[10px] sm:text-xs font-medium border ${row.result === 'Pass' ? 'border-black bg-white' : 'border-black bg-slate-100'}`}>
+          {row.result === 'Pass' ? 'Pass / ناجح' : 'Fail / راسب'}
+        </span>
       </td>
-      <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black font-bold align-top text-center">{row.finalGrade}</td>
+      <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-black font-bold align-top text-center text-sm sm:text-base">{row.finalGrade}</td>
     </tr>
   )
 }
@@ -85,41 +89,41 @@ export default function GradeReportPage() {
           </div>
         </Card>
 
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
-          <div className="bg-white border border-black p-3 sm:p-4 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">Term GPA<br /><span className="normal-case">المعدل الفصلي</span></div>
-            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{termGpa.toFixed(2)}</div>
+        <div className="grid grid-cols-3 gap-2 sm:gap-4">
+          <div className="bg-slate-50 border-2 border-black p-3 sm:p-5 text-center">
+            <div className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wide leading-tight">Term GPA<br /><span className="normal-case text-slate-500">المعدل الفصلي</span></div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-black text-black tracking-tight">{termGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white border border-black p-3 sm:p-4 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">CGPA<br /><span className="normal-case">المعدل التراكمي</span></div>
-            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{overallGpa.toFixed(2)}</div>
+          <div className="bg-slate-50 border-2 border-black p-3 sm:p-5 text-center">
+            <div className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wide leading-tight">CGPA<br /><span className="normal-case text-slate-500">المعدل التراكمي</span></div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-black text-black tracking-tight">{overallGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white border border-black p-3 sm:p-4 text-center">
-            <div className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wide leading-tight">Passed CH<br /><span className="normal-case">الساعات المجتازة</span></div>
-            <div className="mt-1 text-xl sm:text-2xl font-bold text-black">{passed.toFixed(1)}</div>
+          <div className="bg-slate-50 border-2 border-black p-3 sm:p-5 text-center">
+            <div className="text-[10px] sm:text-xs font-bold text-slate-700 uppercase tracking-wide leading-tight">Passed CH<br /><span className="normal-case text-slate-500">الساعات المجتازة</span></div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-black text-black tracking-tight">{passed.toFixed(1)}</div>
           </div>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border border-black text-xs sm:text-sm">
+          <table className="w-full text-left border-2 border-black text-xs sm:text-sm">
             <thead>
-              <tr className="bg-slate-100 text-black border-b border-black">
-                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Course<br /><span className="font-normal text-slate-600">المقرر</span></th>
-                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Status<br /><span className="font-normal text-slate-600">الحالة</span></th>
-                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black text-center">Credits<br /><span className="font-normal text-slate-600">الساعات</span></th>
-                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Result<br /><span className="font-normal text-slate-600">النتيجة</span></th>
-                <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold text-center">Grade<br /><span className="font-normal text-slate-600">التقدير</span></th>
+              <tr className="bg-slate-100 text-black border-b-2 border-black">
+                <th className="py-2.5 sm:py-3 px-3 sm:px-4 font-bold border-r border-black text-[10px] sm:text-xs uppercase tracking-wide">Course<br /><span className="font-normal text-slate-500 normal-case">المقرر</span></th>
+                <th className="py-2.5 sm:py-3 px-3 sm:px-4 font-bold border-r border-black text-[10px] sm:text-xs uppercase tracking-wide">Status<br /><span className="font-normal text-slate-500 normal-case">الحالة</span></th>
+                <th className="py-2.5 sm:py-3 px-3 sm:px-4 font-bold border-r border-black text-[10px] sm:text-xs uppercase tracking-wide text-center">Credits<br /><span className="font-normal text-slate-500 normal-case">الساعات</span></th>
+                <th className="py-2.5 sm:py-3 px-3 sm:px-4 font-bold border-r border-black text-[10px] sm:text-xs uppercase tracking-wide">Result<br /><span className="font-normal text-slate-500 normal-case">النتيجة</span></th>
+                <th className="py-2.5 sm:py-3 px-3 sm:px-4 font-bold text-[10px] sm:text-xs uppercase tracking-wide text-center">Grade<br /><span className="font-normal text-slate-500 normal-case">التقدير</span></th>
               </tr>
             </thead>
             <tbody>
-              {gradeReportRows.map((row) => (
-                <GradeRowView key={row.course} row={row} />
+              {gradeReportRows.map((row, i) => (
+                <GradeRowView key={row.course} row={row} index={i} />
               ))}
-              <tr className="bg-slate-100 font-bold text-black border-t-2 border-black">
-                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black" colSpan={2}>Total / الإجمالي</td>
-                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black text-center">{totalHours.toFixed(1)}</td>
-                <td className="py-2 sm:py-2.5 px-2 sm:px-3 border-r border-black"></td>
-                <td className="py-2 sm:py-2.5 px-2 sm:px-3"></td>
+              <tr className="bg-slate-200 font-bold text-black border-t-2 border-black">
+                <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black text-[11px] sm:text-sm" colSpan={2}>Total / الإجمالي</td>
+                <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black text-center text-sm sm:text-base">{totalHours.toFixed(1)}</td>
+                <td className="py-2.5 sm:py-3 px-3 sm:px-4 border-r border-black"></td>
+                <td className="py-2.5 sm:py-3 px-3 sm:px-4"></td>
               </tr>
             </tbody>
           </table>
