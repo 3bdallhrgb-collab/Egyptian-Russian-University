@@ -28,24 +28,24 @@ function statusBadgeClass(status: string) {
 
 function GradeRowView({ row }: { row: GradeRow }) {
   return (
-    <tr className="border-b border-slate-100 hover:bg-slate-50 transition">
-      <td className="py-3 px-4">
+    <tr className="border-b border-slate-100 hover:bg-slate-50 transition text-xs sm:text-sm">
+      <td className="py-2 sm:py-3 px-2 sm:px-4">
         <div className="font-semibold text-slate-800">{row.course}</div>
-        <div className="text-xs text-slate-500">{row.title}</div>
+        <div className="text-[10px] sm:text-xs text-slate-500">{row.title}</div>
       </td>
-      <td className="py-3 px-4 text-sm text-slate-700">
-        <span className={cn('inline-flex items-center px-2 py-0.5 rounded border text-xs font-semibold', statusBadgeClass(row.status ?? 'Active'))}>
+      <td className="py-2 sm:py-3 px-2 sm:px-4">
+        <span className={cn('inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded border text-[10px] sm:text-xs font-semibold', statusBadgeClass(row.status ?? 'Active'))}>
           {row.status === 'Active' ? 'نشط' : 'منسحب'}
         </span>
       </td>
-      <td className="py-3 px-4 text-sm text-slate-700 font-medium">{row.credits.toFixed(1)}</td>
-      <td className="py-3 px-4 text-sm">
-        <span className={cn('inline-flex items-center px-2 py-0.5 rounded border text-xs font-semibold', resultBadgeClass(row.result ?? 'Pass'))}>
+      <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-700 font-medium">{row.credits.toFixed(1)}</td>
+      <td className="py-2 sm:py-3 px-2 sm:px-4">
+        <span className={cn('inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded border text-[10px] sm:text-xs font-semibold', resultBadgeClass(row.result ?? 'Pass'))}>
           {row.result === 'Pass' ? 'ناجح' : 'راسب'}
         </span>
       </td>
-      <td className="py-3 px-4 text-sm">
-        <span className={cn('inline-flex items-center px-2 py-0.5 rounded border text-xs font-semibold', gradeBadgeClass(row.finalGrade))}>
+      <td className="py-2 sm:py-3 px-2 sm:px-4">
+        <span className={cn('inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded border text-[10px] sm:text-xs font-semibold', gradeBadgeClass(row.finalGrade))}>
           {row.finalGrade}
         </span>
       </td>
@@ -110,18 +110,18 @@ export default function GradeReportPage() {
           </div>
         </Card>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white rounded-lg border-t-4 border-eru-600 shadow-card p-5 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div className="bg-white rounded-md border-t-4 border-eru-600 shadow-sm p-4 sm:p-5 text-center">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">المعدل الفصلي GPA</div>
-            <div className="mt-2 text-3xl font-bold text-eru-900">{termGpa.toFixed(2)}</div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-800">{termGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white rounded-lg border-t-4 border-eru-500 shadow-card p-5 text-center">
+          <div className="bg-white rounded-md border-t-4 border-eru-500 shadow-sm p-4 sm:p-5 text-center">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">المعدل التراكمي CGPA</div>
-            <div className="mt-2 text-3xl font-bold text-eru-900">{overallGpa.toFixed(2)}</div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-800">{overallGpa.toFixed(2)}</div>
           </div>
-          <div className="bg-white rounded-lg border-t-4 border-gold shadow-card p-5 text-center">
+          <div className="bg-white rounded-md border-t-4 border-gold shadow-sm p-4 sm:p-5 text-center">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">الساعات المجتازة Passed CH</div>
-            <div className="mt-2 text-3xl font-bold text-eru-900">{passed.toFixed(1)}</div>
+            <div className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-800">{passed.toFixed(1)}</div>
           </div>
         </div>
 
@@ -129,22 +129,22 @@ export default function GradeReportPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-eru-50 text-sm text-eru-900 border-b border-eru-100">
-                  <th className="py-3 px-4 font-semibold">كود المقرر / Course</th>
-                  <th className="py-3 px-4 font-semibold">حالة المقرر / Status</th>
-                  <th className="py-3 px-4 font-semibold">النقاط / CH</th>
-                  <th className="py-3 px-4 font-semibold">النتيجة / Result</th>
-                  <th className="py-3 px-4 font-semibold">التقدير / Grade</th>
+                <tr className="bg-eru-50 text-xs sm:text-sm text-eru-900 border-b border-eru-100">
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Course</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Status</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">CH</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Result</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Grade</th>
                 </tr>
               </thead>
               <tbody>
                 {gradeReportRows.map((row) => (
                   <GradeRowView key={row.course} row={row} />
                 ))}
-                <tr className="bg-slate-50 font-semibold text-slate-800">
-                  <td className="py-3 px-4" colSpan={2}>إجمالي الساعات / Total CH</td>
-                  <td className="py-3 px-4">{totalHours.toFixed(1)}</td>
-                  <td className="py-3 px-4" colSpan={2}></td>
+                <tr className="bg-slate-50 font-semibold text-slate-800 text-xs sm:text-sm">
+                  <td className="py-2 sm:py-3 px-2 sm:px-4" colSpan={2}>Total CH</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-4">{totalHours.toFixed(1)}</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-4" colSpan={2}></td>
                 </tr>
               </tbody>
             </table>

@@ -2,8 +2,9 @@ import { useMemo } from 'react'
 import { mockCourses, type Course } from '@/data/mockCourses'
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-const startHour = 7
-const endHour = 19
+const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const startHour = 8
+const endHour = 18
 const hours = Array.from({ length: endHour - startHour + 1 }, (_, i) => startHour + i)
 const rowHeight = 60
 
@@ -47,13 +48,13 @@ export function ScheduleGrid() {
         <div className="grid grid-cols-[80px_repeat(7,1fr)] grid-rows-[auto_repeat(13,60px)] border border-slate-200 bg-white rounded-lg overflow-hidden">
           {/* Header row */}
           <div className="border-b border-r border-slate-200 bg-slate-50 p-2"></div>
-          {days.map((day) => (
+          {days.map((day, idx) => (
             <div
               key={day}
               className={`border-b border-r border-slate-200 p-3 text-center text-sm font-semibold ${day === currentDay ? 'bg-eru-50 text-eru-800' : 'bg-slate-50 text-slate-700'
                 }`}
             >
-              {day}
+              {dayLabels[idx]}
             </div>
           ))}
 

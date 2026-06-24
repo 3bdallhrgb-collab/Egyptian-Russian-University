@@ -28,7 +28,7 @@ export function TopNav({ variant = 'portal', pageLabel }: TopNavProps) {
 
   return (
     <>
-      <header className="h-16 bg-white text-slate-800 flex items-center justify-between px-4 lg:px-6 shadow-sm border-b border-slate-200 relative z-40">
+      <header className="h-14 sm:h-16 bg-white text-slate-800 flex items-center justify-between px-3 sm:px-4 lg:px-6 shadow-sm border-b border-slate-200 relative z-40">
         <div className="flex items-center gap-3">
           <Link to={isLogin ? '/login' : '/dashboard'} className="flex items-center gap-3">
             <img
@@ -81,7 +81,7 @@ export function TopNav({ variant = 'portal', pageLabel }: TopNavProps) {
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {!isLogin && (
             <>
               <button className="hidden sm:flex p-2 hover:bg-slate-100 rounded-full transition text-slate-600">
@@ -100,7 +100,7 @@ export function TopNav({ variant = 'portal', pageLabel }: TopNavProps) {
             className="p-2 hover:bg-slate-100 rounded-full transition text-slate-700"
             aria-label="Menu"
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
       </header>

@@ -43,36 +43,36 @@ export default function SchedulePage() {
 
         <Card topBorder="orange">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <SelectBox value={period} options={periodOptions} onChange={setPeriod} />
-              <label className="flex items-center gap-2 text-sm text-slate-700">
+              <label className="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
                 <input
                   type="checkbox"
                   checked={showCart}
                   onChange={(e) => setShowCart(e.target.checked)}
                   className="rounded border-slate-300 text-eru-600 focus:ring-eru-500"
                 />
-                Courses in cart
+                Cart
               </label>
-              <label className="flex items-center gap-2 text-sm text-slate-700">
+              <label className="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
                 <input
                   type="checkbox"
                   checked={showWaitlist}
                   onChange={(e) => setShowWaitlist(e.target.checked)}
                   className="rounded border-slate-300 text-eru-600 focus:ring-eru-500"
                 />
-                Waitlist courses
+                Waitlist
               </label>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               <PrintLink />
-              <button className="bg-eru-700 hover:bg-eru-800 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+              <button className="bg-eru-700 hover:bg-eru-800 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-md shadow-sm transition">
                 View Cart
               </button>
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm">
             <div>
               <span className="text-slate-500">Year:</span>{' '}
               <span className="font-medium text-slate-800">{mockStudent.year}</span>
@@ -82,7 +82,7 @@ export default function SchedulePage() {
               <span className="font-medium text-slate-800">{mockStudent.program}, {mockStudent.degree}</span>
             </div>
             <div>
-              <span className="text-slate-500">Advisor(s):</span>{' '}
+              <span className="text-slate-500">Advisor:</span>{' '}
               <span className="font-medium text-slate-800">{mockStudent.advisor}</span>
             </div>
           </div>
@@ -126,26 +126,25 @@ export default function SchedulePage() {
           <div className="overflow-x-auto rounded-lg border border-slate-200">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-slate-50 text-slate-600 border-b border-slate-200 text-sm">
-                  <th className="py-3 px-4 font-semibold">Code</th>
-                  <th className="py-3 px-4 font-semibold">Course</th>
-                  <th className="py-3 px-4 font-semibold">Days</th>
-                  <th className="py-3 px-4 font-semibold">Time</th>
-                  <th className="py-3 px-4 font-semibold">Location</th>
-                  <th className="py-3 px-4 font-semibold">Instructor</th>
-                  <th className="py-3 px-4 font-semibold">Credits</th>
+                <tr className="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs sm:text-sm">
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Code</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Course</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Days</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Time</th>
+                  <th className="py-2 sm:py-3 px-2 sm:px-4 font-semibold">Credits</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredCourses.map((course: Course) => (
-                  <tr key={course.code} className="border-b border-slate-100 hover:bg-slate-50 text-sm transition">
-                    <td className="py-3 px-4 font-semibold text-eru-700">{course.code}</td>
-                    <td className="py-3 px-4 text-slate-700 font-medium">{course.title}</td>
-                    <td className="py-3 px-4 text-slate-700">{course.days.join(', ')}</td>
-                    <td className="py-3 px-4 text-slate-700">{course.startTime} - {course.endTime}</td>
-                    <td className="py-3 px-4 text-slate-700">{course.location}</td>
-                    <td className="py-3 px-4 text-slate-700">{course.instructor}</td>
-                    <td className="py-3 px-4 text-slate-700 font-semibold">{course.credits.toFixed(1)}</td>
+                  <tr key={course.code} className="border-b border-slate-100 hover:bg-slate-50 text-xs sm:text-sm transition">
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 font-semibold text-eru-700">{course.code}</td>
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-700 font-medium">
+                      <div>{course.title}</div>
+                      <div className="text-[10px] sm:text-xs text-slate-500">{course.location}</div>
+                    </td>
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-700">{course.days.join(', ')}</td>
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-700">{course.startTime} - {course.endTime}</td>
+                    <td className="py-2 sm:py-3 px-2 sm:px-4 text-slate-700 font-semibold">{course.credits.toFixed(1)}</td>
                   </tr>
                 ))}
               </tbody>

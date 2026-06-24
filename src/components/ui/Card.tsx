@@ -18,7 +18,7 @@ export function Card({ children, className, topBorder = 'none', noPadding = fals
   return (
     <div
       className={cn(
-        'bg-white rounded-lg shadow-sm border border-slate-200',
+        'bg-white rounded-md shadow-sm border border-slate-200',
         borderColor[topBorder],
         !noPadding && 'p-6',
         className

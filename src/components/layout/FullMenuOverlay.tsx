@@ -54,12 +54,12 @@ export function FullMenuOverlay({ onClose }: FullMenuOverlayProps) {
       <div className="absolute inset-x-0 top-16 bottom-0 bg-white overflow-auto">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex justify-end mb-6">
-            <button onClick={onClose} className="p-2 hover:bg-white rounded-full shadow-sm transition">
+            <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full shadow-sm transition border border-slate-200">
               <X className="w-6 h-6 text-eru-900" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {menuGroups.map((group) => (
               <div key={group.title} className="bg-white rounded-lg shadow-card p-5">
                 <h3 className="text-sm font-bold text-eru-900 uppercase tracking-wide mb-4 border-b border-slate-100 pb-2">
