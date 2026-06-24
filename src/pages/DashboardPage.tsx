@@ -19,14 +19,14 @@ export default function DashboardPage() {
         <PageHeader title="Today's Overview" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card topBorder="blue">
+          <Card>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-800">Your Calendar</h2>
+              <h2 className="text-lg font-semibold text-black">Calendar / التقويم</h2>
               <div className="text-sm text-slate-600">{month}</div>
             </div>
             <div className="grid grid-cols-7 gap-1 text-center text-sm">
               {days.map((d) => (
-                <div key={d} className="py-2 font-semibold text-slate-600">
+                <div key={d} className="py-2 font-semibold text-black">
                   {d}
                 </div>
               ))}
@@ -38,9 +38,9 @@ export default function DashboardPage() {
                 return (
                   <div
                     key={date}
-                    className={`py-2 rounded-full cursor-pointer ${isSelected
-                      ? 'bg-eru-700 text-white font-semibold'
-                      : 'text-slate-700 hover:bg-slate-100'
+                    className={`py-2 cursor-pointer ${isSelected
+                      ? 'bg-black text-white font-semibold'
+                      : 'text-black hover:bg-slate-100'
                       }`}
                   >
                     {date}
@@ -54,8 +54,8 @@ export default function DashboardPage() {
             </div>
           </Card>
 
-          <Card topBorder="cyan">
-            <h2 className="text-lg font-semibold text-slate-800 mb-4">Announcements</h2>
+          <Card>
+            <h2 className="text-lg font-semibold text-black mb-4">Announcements / الإعلانات</h2>
             <div className="flex flex-col items-center justify-center py-16 text-slate-500">
               <p className="text-sm">No announcements at this time.</p>
             </div>
