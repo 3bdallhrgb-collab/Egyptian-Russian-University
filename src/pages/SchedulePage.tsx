@@ -123,28 +123,28 @@ export default function SchedulePage() {
               </div>
             </div>
           </div>
-          <div className="overflow-x-auto border border-black">
+          <div className="overflow-x-auto rounded-lg border border-slate-200 shadow-sm bg-white">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
-                <tr className="bg-slate-100 text-black border-b border-black">
-                  <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Code<br /><span className="font-normal text-slate-600">الرمز</span></th>
-                  <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Course<br /><span className="font-normal text-slate-600">المقرر</span></th>
-                  <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Days<br /><span className="font-normal text-slate-600">الأيام</span></th>
-                  <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold border-r border-black">Time<br /><span className="font-normal text-slate-600">الوقت</span></th>
-                  <th className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold text-center">Credits<br /><span className="font-normal text-slate-600">الساعات</span></th>
+                <tr className="bg-slate-50 text-slate-700 border-b border-slate-200">
+                  <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Code<br /><span className="font-normal text-slate-400 normal-case">الرمز</span></th>
+                  <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Course<br /><span className="font-normal text-slate-400 normal-case">المقرر</span></th>
+                  <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Days<br /><span className="font-normal text-slate-400 normal-case">الأيام</span></th>
+                  <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide">Time<br /><span className="font-normal text-slate-400 normal-case">الوقت</span></th>
+                  <th className="py-3 sm:py-3.5 px-3 sm:px-4 font-semibold text-[10px] sm:text-xs uppercase tracking-wide text-center">Credits<br /><span className="font-normal text-slate-400 normal-case">الساعات</span></th>
                 </tr>
               </thead>
               <tbody>
-                {filteredCourses.map((course: Course) => (
-                  <tr key={course.code} className="border-b border-black text-xs sm:text-sm">
-                    <td className="py-2 sm:py-2.5 px-2 sm:px-3 font-bold text-black border-r border-black">{course.code}</td>
-                    <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black border-r border-black">
+                {filteredCourses.map((course: Course, i: number) => (
+                  <tr key={course.code} className={`border-b border-slate-100 text-xs sm:text-sm transition-colors hover:bg-slate-50 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
+                    <td className="py-3 px-3 sm:px-4 font-bold text-slate-900">{course.code}</td>
+                    <td className="py-3 px-3 sm:px-4 text-slate-700">
                       <div className="font-medium">{course.title}</div>
-                      <div className="text-[10px] sm:text-[11px] text-slate-600">{course.location}</div>
+                      <div className="text-[10px] sm:text-[11px] text-slate-500">{course.location}</div>
                     </td>
-                    <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black border-r border-black">{course.days.join(', ')}</td>
-                    <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black border-r border-black">{course.startTime} - {course.endTime}</td>
-                    <td className="py-2 sm:py-2.5 px-2 sm:px-3 text-black font-semibold text-center">{course.credits.toFixed(1)}</td>
+                    <td className="py-3 px-3 sm:px-4 text-slate-700">{course.days.join(', ')}</td>
+                    <td className="py-3 px-3 sm:px-4 text-slate-700">{course.startTime} - {course.endTime}</td>
+                    <td className="py-3 px-3 sm:px-4 text-slate-700 font-semibold text-center">{course.credits.toFixed(1)}</td>
                   </tr>
                 ))}
               </tbody>
